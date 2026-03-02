@@ -1,4 +1,4 @@
-package modul_1;
+package modul_1.latihan;
 
 
 public class dataDiri {
