@@ -1,4 +1,4 @@
-package praktikum_1.latihan;
+package praktikum_1;
 
 public class factorial {
     public static void main(String[] args){
