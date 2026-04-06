@@ -70,48 +70,59 @@ public class Main {
 
 ### Output Program
 
+![image](https://hackmd.io/_uploads/H1V5UYGjWl.png)
 
 
 ### Latihan — Class Buku
 
 Membuat class `Buku` dengan atribut `judul`, `penulis`, dan `tahunTerbit`, kemudian membuat objek dari class tersebut dan menampilkan informasinya.
 
-**Kode Program** (`modul_3/latihan/latihan_1/Buku.java`):
+**Kode Program** (`Main.java`):
 
 ```java
-package modul_3.latihan.latihan_1;
+package praktikum_3.bagian_1.Latihan;
 
-public class Buku {
+public class MainBuku {
+    public static void main(String[] args) {
+
+        Buku buku1 = new Buku("Laskar Pelangi", "Andrea Hirata", 2005);
+
+        Buku buku2 = new Buku("Clean Code", "Robert C. Martin", 2008);
+
+        buku1.tampilkanInfo();
+        System.out.println();
+        buku2.tampilkanInfo();
+    }
+}
+```
+(`Buku.java`):
+```java
+package praktikum_3.bagian_1.Latihan;
+
+class Buku {
     String judul;
     String penulis;
     int tahunTerbit;
 
-    void tampilInfo() {
-        System.out.println("=== Informasi Buku ===");
-        System.out.println("Judul        : " + judul);
-        System.out.println("Penulis      : " + penulis);
-        System.out.println("Tahun Terbit : " + tahunTerbit);
+    Buku(String judul, String penulis, int tahunTerbit) {
+        this.judul = judul;
+        this.penulis = penulis;
+        this.tahunTerbit = tahunTerbit;
     }
 
-    public static void main(String[] args) {
-        Buku buku1 = new Buku();
-        buku1.judul = "Pemrograman Java untuk Pemula";
-        buku1.penulis = "Budi Raharjo";
-        buku1.tahunTerbit = 2022;
-
-        buku1.tampilInfo();
+    void tampilkanInfo() {
+        System.out.println("Detail Buku:");
+        System.out.println("Judul        : " + this.judul);
+        System.out.println("Penulis      : " + this.penulis);
+        System.out.println("Tahun Terbit : " + this.tahunTerbit);
     }
 }
 ```
 
 **Output:**
 
-```
-=== Informasi Buku ===
-Judul        : Pemrograman Java untuk Pemula
-Penulis      : Budi Raharjo
-Tahun Terbit : 2022
-```
+![image](https://hackmd.io/_uploads/rJT6UYMi-e.png)
+
 
 ### Analisa dan Pembahasan
 
@@ -137,59 +148,61 @@ Encapsulation adalah konsep menyembunyikan detail internal objek dan hanya menge
 
 **Mahasiswa.java**
 ```java
-package modul_3.bagian_2;
+package praktikum_3.bagian_2;
 
-public class Mahasiswa {
+class Mahasiswa {
+    // Atribut private
     private String nama;
-    private String nim;
-    private double ipk;
+    private int umur;
 
-    public String getNama() { return nama; }
-    public void setNama(String nama) { this.nama = nama; }
-
-    public String getNim() { return nim; }
-    public void setNim(String nim) { this.nim = nim; }
-
-    public double getIpk() { return ipk; }
-    public void setIpk(double ipk) {
-        if (ipk >= 0 && ipk <= 4.0) {
-            this.ipk = ipk;
-        } else {
-            System.out.println("IPK tidak valid!");
-        }
+    // Getter dan Setter
+    public String getNama() {
+        return nama;
     }
 
-    public void tampilInfo() {
-        System.out.println("Nama : " + nama);
-        System.out.println("NIM  : " + nim);
-        System.out.println("IPK  : " + ipk);
+    public void setNama(String nama) {
+        this.nama = nama;
+    }
+
+    public int getUmur() {
+        return umur;
+    }
+
+    public void setUmur(int umur) {
+        this.umur = umur;
+    }
+
+    // Metode untuk menampilkan informasi
+    void displayInfo() {
+        System.out.println("Nama: " + nama);
+        System.out.println("Umur: " + umur);
     }
 }
 ```
 
 **Main.java**
 ```java
-package modul_3.bagian_2;
+package praktikum_3.bagian_2;
 
 public class Main {
     public static void main(String[] args) {
-        Mahasiswa mhs = new Mahasiswa();
-        mhs.setNama("Mizaul Arfan");
-        mhs.setNim("2024573010111");
-        mhs.setIpk(3.85);
+        Mahasiswa mhs1 = new Mahasiswa();
 
-        mhs.tampilInfo();
+        // Mengatur nilai menggunakan Setter
+        mhs1.setNama("Budi");
+        mhs1.setUmur(20);
+
+        // Mengambil dan menampilkan nilai menggunakan Getter
+        System.out.println("Nama: " + mhs1.getNama());
+        System.out.println("Umur: " + mhs1.getUmur());
     }
 }
 ```
 
 ### Output Program
 
-```
-Nama : Mizaul Arfan
-NIM  : 2024573010111
-IPK  : 3.85
-```
+![image](https://hackmd.io/_uploads/SJuSwtMiWg.png)
+
 
 ### Latihan — Class Motor
 
@@ -198,46 +211,63 @@ Membuat class `Motor` dengan atribut `merk` dan `tahun` yang dienkapsulasi, bese
 **Kode Program** (`modul_3/latihan/latihan_1/Motor.java`):
 
 ```java
-package modul_3.latihan.latihan_1;
+package praktikum_3.latihan;
 
-public class Motor {
+class Motor {
+    // Atribut yang dienkapsulasi (private)
     private String merk;
     private int tahun;
 
-    public String getMerk() { return merk; }
-    public void setMerk(String merk) { this.merk = merk; }
+    // Getter untuk merk
+    public String getMerk() {
+        return merk;
+    }
 
-    public int getTahun() { return tahun; }
+    // Setter untuk merk
+    public void setMerk(String merk) {
+        this.merk = merk;
+    }
+
+    // Getter untuk tahun
+    public int getTahun() {
+        return tahun;
+    }
+
+    // Setter untuk tahun
     public void setTahun(int tahun) {
-        if (tahun > 1900 && tahun <= 2025) {
+        // Contoh validasi: tahun tidak boleh negatif atau terlalu tua
+        if (tahun > 1885) {
             this.tahun = tahun;
         } else {
             System.out.println("Tahun tidak valid!");
         }
     }
+}
+```
+```java
+package praktikum_3.latihan;
 
-    public void tampilInfo() {
-        System.out.println("=== Informasi Motor ===");
-        System.out.println("Merk  : " + merk);
-        System.out.println("Tahun : " + tahun);
-    }
-
+public class MainMotor {
     public static void main(String[] args) {
-        Motor motor = new Motor();
-        motor.setMerk("Honda");
-        motor.setTahun(2023);
-        motor.tampilInfo();
+        // Membuat objek Motor
+        Motor motorSaya = new Motor();
+
+        // Mengatur nilai menggunakan Setter
+        motorSaya.setMerk("Honda PCX");
+        motorSaya.setTahun(2023);
+
+        // Mengambil dan menampilkan nilai menggunakan Getter
+        System.out.println("--- Informasi Kendaraan ---");
+        System.out.println("Merk Motor  : " + motorSaya.getMerk());
+        System.out.println("Tahun Terbit: " + motorSaya.getTahun());
     }
 }
 ```
 
 **Output:**
 
-```
-=== Informasi Motor ===
-Merk  : Honda
-Tahun : 2023
-```
+![image](https://hackmd.io/_uploads/SyMjPYziWe.png)
+
 
 ### Analisa dan Pembahasan
 
@@ -320,11 +350,8 @@ public class Main {
 ```
 
 **Output:**
-```
-Merk  : Toyota
-Tahun : 2022
-Jumlah Pintu : 4
-```
+![image](https://hackmd.io/_uploads/B1kr4KBiWe.png)
+
 
 ### Langkah Praktikum — Composition
 
@@ -337,57 +364,59 @@ Jumlah Pintu : 4
 
 **Mesin.java**
 ```java
-package modul_3.bagian_3.komposisi;
+package praktikum_3.bagian_3.Komposisi;
 
-public class Mesin {
-    String tipe;
-    int kapasitas;
+class Mesin {
+    void hidupkan() {
+        System.out.println("Mesin menyala.");
+    }
 
-    void nyalakan() {
-        System.out.println("Mesin " + tipe + " dengan kapasitas " + kapasitas + "cc dinyalakan.");
+    void matikan() {
+        System.out.println("Mesin dimatikan.");
     }
 }
 ```
 
 **Mobil.java**
 ```java
-package modul_3.bagian_3.komposisi;
+package praktikum_3.bagian_3.Komposisi;
 
-public class Mobil {
-    String merk;
-    Mesin mesin;
+class Mobil {
+    private final Mesin mesin; // Composition
 
-    void tampilInfo() {
-        System.out.println("Merk  : " + merk);
-        mesin.nyalakan();
+    public Mobil() {
+        this.mesin = new Mesin(); // Membuat objek Mesin
+    }
+
+    void mulai() {
+        mesin.hidupkan();
+        System.out.println("Mobil siap digunakan.");
+    }
+
+    void berhenti() {
+        mesin.matikan();
+        System.out.println("Mobil berhenti.");
     }
 }
 ```
 
 **Main.java**
 ```java
-package modul_3.bagian_3.komposisi;
+package praktikum_3.bagian_3.Komposisi;
 
 public class Main {
     public static void main(String[] args) {
-        Mesin mesin = new Mesin();
-        mesin.tipe = "V6";
-        mesin.kapasitas = 2000;
-
         Mobil mobil = new Mobil();
-        mobil.merk = "Honda";
-        mobil.mesin = mesin;
-
-        mobil.tampilInfo();
+        mobil.mulai();
+        mobil.berhenti();
     }
 }
 ```
 
 **Output:**
-```
-Merk  : Honda
-Mesin V6 dengan kapasitas 2000cc dinyalakan.
-```
+![image](https://hackmd.io/_uploads/BJaY9YHjWg.png)
+
+
 
 ### Latihan — Laptop dengan Processor dan RAM
 
@@ -456,12 +485,8 @@ public class Laptop {
 ```
 
 **Output:**
-```
-=== Laptop ASUS dinyalakan ===
-Processor Intel Core i7 sedang berjalan.
-RAM 16GB sedang membaca data.
-RAM 16GB sedang menulis data.
-```
+![image](https://hackmd.io/_uploads/Bk3HwFHiZx.png)
+
 
 ### Analisa dan Pembahasan
 
@@ -499,63 +524,58 @@ Polymorphism memungkinkan objek untuk memiliki banyak bentuk. Di Java, ini dicap
 
 **Hewan.java**
 ```java
-package modul_3.bagian_4.overriding;
+package praktikum_3.bagian_4;
 
-public class Hewan {
-    String nama;
-
+class Hewan {
     void bersuara() {
-        System.out.println(nama + " mengeluarkan suara.");
+        System.out.println("Hewan bersuara.");
     }
 }
 ```
 
 **Kucing.java**
 ```java
-package modul_3.bagian_4.overriding;
+package praktikum_3.bagian_4;
 
-public class Kucing extends Hewan {
+class Kucing extends Hewan {
     @Override
     void bersuara() {
-        System.out.println(nama + " bersuara: Meow!");
+        System.out.println("Meong!");
     }
 }
 ```
 
 **Anjing.java**
 ```java
-package modul_3.bagian_4.overriding;
+package praktikum_3.bagian_4;
 
-public class Anjing extends Hewan {
+class Anjing extends Hewan {
     @Override
     void bersuara() {
-        System.out.println(nama + " bersuara: Guk Guk!");
+        System.out.println("Guk Guk!");
     }
 }
+
 ```
 
 **Main.java**
 ```java
-package modul_3.bagian_4.overriding;
+package praktikum_3.bagian_4;
 
 public class Main {
     public static void main(String[] args) {
-        Hewan hewan1 = new Kucing();
-        hewan1.nama = "Kitty";
-        hewan1.bersuara();
+        Hewan hewan1 = new Kucing(); // Polymorphism
+        Hewan hewan2 = new Anjing(); // Polymorphism
 
-        Hewan hewan2 = new Anjing();
-        hewan2.nama = "Rex";
-        hewan2.bersuara();
+        hewan1.bersuara(); // Output: Meong!
+        hewan2.bersuara(); // Output: Guk Guk!
     }
 }
 ```
 
 **Output:**
-```
-Kitty bersuara: Meow!
-Rex bersuara: Guk Guk!
-```
+![image](https://hackmd.io/_uploads/SJ-latrj-e.png)
+
 
 ### Langkah Praktikum — Method Overloading
 
@@ -567,17 +587,20 @@ Rex bersuara: Guk Guk!
 
 **Kalkulator.java**
 ```java
-package modul_3.bagian_4.overloading;
+package praktikum_3.bagian_4.overloading;
 
-public class Kalkulator {
+class Kalkulator {
+    // Method overloading: penjumlahan dua bilangan bulat
     int tambah(int a, int b) {
         return a + b;
     }
 
+    // Method overloading: penjumlahan tiga bilangan bulat
     int tambah(int a, int b, int c) {
         return a + b + c;
     }
 
+    // Method overloading: penjumlahan dua bilangan desimal
     double tambah(double a, double b) {
         return a + b;
     }
@@ -586,24 +609,22 @@ public class Kalkulator {
 
 **Main.java**
 ```java
-package modul_3.bagian_4.overloading;
+package praktikum_3.bagian_4.overloading;
 
 public class Main {
     public static void main(String[] args) {
-        Kalkulator kalk = new Kalkulator();
-        System.out.println("Tambah 2 int    : " + kalk.tambah(5, 3));
-        System.out.println("Tambah 3 int    : " + kalk.tambah(5, 3, 2));
-        System.out.println("Tambah 2 double : " + kalk.tambah(5.5, 3.2));
+        Kalkulator kalkulator = new Kalkulator();
+
+        System.out.println("Hasil 1: " + kalkulator.tambah(5, 10)); // Output: 15
+        System.out.println("Hasil 2: " + kalkulator.tambah(5, 10, 15)); // Output: 30
+        System.out.println("Hasil 3: " + kalkulator.tambah(3.5, 2.5)); // Output: 6.0
     }
 }
 ```
 
 **Output:**
-```
-Tambah 2 int    : 8
-Tambah 3 int    : 10
-Tambah 2 double : 8.7
-```
+![image](https://hackmd.io/_uploads/HkWSCKSjZl.png)
+
 
 ### Latihan
 
@@ -656,10 +677,8 @@ public class Lingkaran extends BangunDatar {
 ```
 
 **Output:**
-```
-Luas Persegi : 25.0
-Luas Lingkaran : 153.93804002589985
-```
+![image](https://hackmd.io/_uploads/HJY1ycSjZl.png)
+
 
 #### Latihan 2 — Overloading: Matematika
 
@@ -689,11 +708,8 @@ public class Matematika {
 ```
 
 **Output:**
-```
-2 parameter int    : 7
-3 parameter int    : 12
-2 parameter double : 4.0
-```
+![image](https://hackmd.io/_uploads/Hkkj1cSjZg.png)
+
 
 ### Analisa dan Pembahasan
 
@@ -732,69 +748,70 @@ Abstraction adalah salah satu dari empat pilar utama OOP yang memungkinkan kita 
 
 **Hewan.java**
 ```java
-package modul_3.bagian_5.abstrak;
+package praktikum_3.bagian_5.abstrak;
 
-public abstract class Hewan {
+abstract class Hewan {
+    // Atribut
     String nama;
 
-    abstract void bersuara();
-
+    // Method konkret
     void makan() {
         System.out.println(nama + " sedang makan.");
     }
+
+    // Method abstrak
+    abstract void bersuara();
 }
 ```
 
 **Kucing.java**
 ```java
-package modul_3.bagian_5.abstrak;
+package praktikum_3.bagian_5.abstrak;
 
-public class Kucing extends Hewan {
+// Subclass dari abstract class
+class Kucing extends Hewan {
     @Override
     void bersuara() {
-        System.out.println(nama + " bersuara: Meow!");
+        System.out.println("Meong!");
     }
 }
+
 ```
 
 **Anjing.java**
 ```java
-package modul_3.bagian_5.abstrak;
+package praktikum_3.bagian_5.abstrak;
 
-public class Anjing extends Hewan {
+class Anjing extends Hewan {
     @Override
     void bersuara() {
-        System.out.println(nama + " bersuara: Guk Guk!");
+        System.out.println("Guk Guk!");
     }
 }
 ```
 
 **Main.java**
 ```java
-package modul_3.bagian_5.abstrak;
+package praktikum_3.bagian_5.abstrak;
 
 public class Main {
     public static void main(String[] args) {
         Hewan kucing = new Kucing();
         kucing.nama = "Kitty";
-        kucing.bersuara();
-        kucing.makan();
+        kucing.makan(); // Method konkret dari abstract class
+        kucing.bersuara(); // Method abstrak yang di-override
 
         Hewan anjing = new Anjing();
-        anjing.nama = "Rex";
-        anjing.bersuara();
-        anjing.makan();
+        anjing.nama = "Doggy";
+        anjing.makan(); // Method konkret dari abstract class
+        anjing.bersuara(); // Method abstrak yang di-override
     }
 }
 ```
 
 **Output:**
-```
-Kitty bersuara: Meow!
-Kitty sedang makan.
-Rex bersuara: Guk Guk!
-Rex sedang makan.
-```
+![image](https://hackmd.io/_uploads/HkDnl9Ho-g.png)
+
 
 ### Langkah Praktikum — Interface
 
@@ -807,57 +824,113 @@ Rex sedang makan.
 
 **Bergerak.java**
 ```java
-package modul_3.bagian_5.antarmuka;
+package praktikum_3.bagian_5.antarmuka;
 
-public interface Bergerak {
+// Interface
+interface Bergerak {
+    // Method abstrak
     void bergerak();
+
+    // Method default (Java 8+)
+    default void berhenti() {
+        System.out.println("Berhenti bergerak.");
+    }
+
+    // Method static (Java 8+)
+    static void info() {
+        System.out.println("Ini adalah interface Bergerak.");
+    }
 }
+
 ```
 
 **Mobil.java**
 ```java
-package modul_3.bagian_5.antarmuka;
+package praktikum_3.bagian_5.antarmuka;
 
-public class Mobil implements Bergerak {
+class Mobil implements Bergerak {
     @Override
     public void bergerak() {
-        System.out.println("Mobil bergerak di darat.");
+        System.out.println("Mobil sedang melaju.");
     }
 }
 ```
 
 **Pesawat.java**
 ```java
-package modul_3.bagian_5.antarmuka;
+package praktikum_3.bagian_5.antarmuka;
 
-public class Pesawat implements Bergerak {
+class Pesawat implements Bergerak {
     @Override
     public void bergerak() {
-        System.out.println("Pesawat bergerak di udara.");
+        System.out.println("Pesawat sedang terbang.");
     }
 }
 ```
 
 **Main.java**
 ```java
-package modul_3.bagian_5.antarmuka;
+package praktikum_3.bagian_5.antarmuka;
 
 public class Main {
     public static void main(String[] args) {
         Bergerak mobil = new Mobil();
-        mobil.bergerak();
+        mobil.bergerak(); // Method dari interface
+        mobil.berhenti(); // Method default dari interface
 
         Bergerak pesawat = new Pesawat();
-        pesawat.bergerak();
+        pesawat.bergerak(); // Method dari interface
+        pesawat.berhenti(); // Method default dari interface
+
+        Bergerak.info(); // Method static dari interface
     }
 }
 ```
 
 **Output:**
+![image](https://hackmd.io/_uploads/S1DlDcSsbx.png)
+
+### Langkah Praktikum — Interface
+1. Di dalam package `bagian_5` buat sebuah class baru dan beri nama `Main`.
+```java
+package praktikum_3.bagian_5;
+
+interface Terbang {
+    void terbang();
+}
+
+// Abstract Class
+abstract class Hewan {
+    String nama;
+
+    abstract void bersuara();
+}
+
+// Class yang mewarisi abstract class dan mengimplementasikan interface
+class Burung extends Hewan implements Terbang {
+    @Override
+    void bersuara() {
+        System.out.println("Kicau kicau!");
+    }
+
+    @Override
+    public void terbang() {
+        System.out.println(nama + " sedang terbang.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Burung burung = new Burung();
+        burung.nama = "Merpati";
+        burung.bersuara();
+        burung.terbang();
+    }
+}
 ```
-Mobil bergerak di darat.
-Pesawat bergerak di udara.
-```
+**Output:**
+![image](https://hackmd.io/_uploads/HJX1t9Bs-l.png)
+
 
 ### Latihan — HewanAir, Interface Berenang, dan Class Ikan
 
@@ -907,10 +980,8 @@ public class Ikan extends HewanAir implements Berenang {
 ```
 
 **Output:**
-```
-Nemo sedang berenang di air.
-Nemo sedang makan plankton.
-```
+![image](https://hackmd.io/_uploads/B1JTYcSs-e.png)
+
 
 ### Analisa dan Pembahasan
 
@@ -942,166 +1013,224 @@ Bagian ini mengimplementasikan seluruh konsep OOP (Class, Object, Encapsulation,
 
 **Tiket.java** (Abstract Class)
 ```java
-package modul_3.bagian_6;
+package praktikum_3.bagian_6;
 
-public abstract class Tiket {
-    private String jenis;
-    private double harga;
+abstract class Tiket {
+    private final String jenis;
+    private final double harga;
 
     public Tiket(String jenis, double harga) {
         this.jenis = jenis;
         this.harga = harga;
     }
 
-    public String getJenis() { return jenis; }
-    public double getHarga() { return harga; }
+    public String getJenis() {
+        return jenis;
+    }
 
+    public double getHarga() {
+        return harga;
+    }
+
+    // Abstract method untuk menghitung diskon
     public abstract double hitungDiskon();
-
-    public double hargaAkhir() {
-        return harga - hitungDiskon();
-    }
-
-    public void tampilInfo() {
-        System.out.println("Jenis  : " + jenis);
-        System.out.println("Harga  : Rp " + harga);
-        System.out.println("Diskon : Rp " + hitungDiskon());
-        System.out.println("Total  : Rp " + hargaAkhir());
-    }
 }
 ```
 
 **TiketReguler.java**
 ```java
-package modul_3.bagian_6;
+package praktikum_3.bagian_6;
 
-public class TiketReguler extends Tiket {
+class TiketReguler extends Tiket {
     public TiketReguler() {
-        super("Reguler", 150000);
+        super("Reguler", 100000); // Harga tiket reguler
     }
 
     @Override
     public double hitungDiskon() {
-        return 0; // Tidak ada diskon
+        return 0; // Tidak ada diskon untuk tiket reguler
     }
 }
 ```
 
 **TiketVIP.java**
 ```java
-package modul_3.bagian_6;
+package praktikum_3.bagian_6;
 
-public class TiketVIP extends Tiket {
+class TiketVIP extends Tiket {
     public TiketVIP() {
-        super("VIP", 500000);
+        super("VIP", 250000); // Harga tiket VIP
     }
 
     @Override
     public double hitungDiskon() {
-        return getHarga() * 0.1; // Diskon 10%
+        return 0.1 * getHarga(); // Diskon 10% untuk tiket VIP
     }
 }
 ```
 
 **Pesanan.java**
 ```java
-package modul_3.bagian_6;
+package praktikum_3.bagian_6;
 
-public class Pesanan {
-    private String nomorPesanan;
-    private Tiket tiket;
-    private int jumlah;
+class Pesanan {
+    private final String namaPemesan;
+    private final Tiket tiket;
+    private final int jumlah;
 
-    public Pesanan(String nomorPesanan, Tiket tiket, int jumlah) {
-        this.nomorPesanan = nomorPesanan;
+    public Pesanan(String namaPemesan, Tiket tiket, int jumlah) {
+        this.namaPemesan = namaPemesan;
         this.tiket = tiket;
         this.jumlah = jumlah;
     }
 
-    public String getNomorPesanan() { return nomorPesanan; }
+    public String getNamaPemesan() {
+        return namaPemesan;
+    }
 
-    public void tampilDetail() {
-        System.out.println("=== Detail Pesanan ===");
-        System.out.println("No. Pesanan : " + nomorPesanan);
-        tiket.tampilInfo();
-        System.out.println("Jumlah      : " + jumlah);
-        System.out.println("Total Bayar : Rp " + (tiket.hargaAkhir() * jumlah));
+    public Tiket getTiket() {
+        return tiket;
+    }
+
+    public int getJumlah() {
+        return jumlah;
+    }
+
+    // Menghitung total harga setelah diskon
+    public double hitungTotal() {
+        double total = tiket.getHarga() * jumlah;
+        double diskon = tiket.hitungDiskon() * jumlah;
+        return total - diskon;
+    }
+
+    // Menampilkan detail pesanan
+    public void displayDetail() {
+        System.out.println("\nDetail Pesanan:");
+        System.out.println("Nama Pemesan: " + namaPemesan);
+        System.out.println("Jenis Tiket: " + tiket.getJenis());
+        System.out.println("Jumlah: " + jumlah);
+        System.out.println("Total Harga: Rp" + hitungTotal());
     }
 }
+
 ```
 
 **KonferensiApp.java**
 ```java
-package modul_3.bagian_6;
+package praktikum_3.bagian_6;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class KonferensiApp {
-    private static ArrayList<Pesanan> daftarPesanan = new ArrayList<>();
-    private static int nomorUrut = 1;
+    private static final ArrayList<Pesanan> daftarPesanan = new ArrayList<>();
+    private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int pilihan;
-
-        do {
+        while (true) {
             System.out.println("\n=== Aplikasi Pemesanan Tiket Konferensi ===");
             System.out.println("1. Lihat Daftar Tiket");
             System.out.println("2. Pesan Tiket");
             System.out.println("3. Lihat Detail Pesanan");
             System.out.println("4. Batalkan Pesanan");
-            System.out.println("5. Hitung Total Harga Semua Pesanan");
-            System.out.println("0. Keluar");
-            System.out.print("Pilihan: ");
-            pilihan = scanner.nextInt();
+            System.out.println("5. Keluar");
+            System.out.print("Pilih menu: ");
+
+            int pilihan = scanner.nextInt();
+            scanner.nextLine(); // Membersihkan newline
 
             switch (pilihan) {
                 case 1:
-                    System.out.println("\n--- Daftar Tiket ---");
-                    new TiketReguler().tampilInfo();
-                    System.out.println();
-                    new TiketVIP().tampilInfo();
+                    lihatDaftarTiket();
                     break;
                 case 2:
-                    System.out.println("\nPilih Jenis Tiket (1=Reguler, 2=VIP): ");
-                    int jenis = scanner.nextInt();
-                    System.out.print("Jumlah Tiket: ");
-                    int jumlah = scanner.nextInt();
-                    Tiket tiket = (jenis == 1) ? new TiketReguler() : new TiketVIP();
-                    String nomor = "PSN-" + String.format("%03d", nomorUrut++);
-                    daftarPesanan.add(new Pesanan(nomor, tiket, jumlah));
-                    System.out.println("Pesanan berhasil! No. Pesanan: " + nomor);
+                    pesanTiket();
                     break;
                 case 3:
-                    System.out.print("Masukkan No. Pesanan: ");
-                    String cariNomor = scanner.next();
-                    boolean ditemukan = false;
-                    for (Pesanan p : daftarPesanan) {
-                        if (p.getNomorPesanan().equals(cariNomor)) {
-                            p.tampilDetail();
-                            ditemukan = true;
-                            break;
-                        }
-                    }
-                    if (!ditemukan) System.out.println("Pesanan tidak ditemukan.");
+                    lihatDetailPesanan();
                     break;
                 case 4:
-                    System.out.print("Masukkan No. Pesanan yang dibatalkan: ");
-                    String batalNomor = scanner.next();
-                    daftarPesanan.removeIf(p -> p.getNomorPesanan().equals(batalNomor));
-                    System.out.println("Pesanan " + batalNomor + " berhasil dibatalkan.");
+                    batalkanPesanan();
                     break;
                 case 5:
-                    double total = 0;
-                    for (Pesanan p : daftarPesanan) total += p.getNomorPesanan().length();
-                    System.out.println("Total semua pesanan: Rp " + total);
-                    break;
+                    System.out.println("Terima kasih telah menggunakan aplikasi ini.");
+                    System.exit(0);
+                default:
+                    System.out.println("Pilihan tidak valid. Silakan coba lagi.");
             }
-        } while (pilihan != 0);
+        }
+    }
 
-        System.out.println("Terima kasih!");
-        scanner.close();
+    private static void lihatDaftarTiket() {
+        System.out.println("\nDaftar Tiket:");
+        System.out.println("1. Tiket Reguler - Rp100.000");
+        System.out.println("2. Tiket VIP - Rp250.000 (Diskon 10%)");
+    }
+
+    private static void pesanTiket() {
+        System.out.print("\nMasukkan nama pemesan: ");
+        String namaPemesan = scanner.nextLine();
+
+        System.out.print("Pilih jenis tiket (1: Reguler, 2: VIP): ");
+        int jenisTiket = scanner.nextInt();
+        System.out.print("Masukkan jumlah tiket: ");
+        int jumlah = scanner.nextInt();
+
+        Tiket tiket = null;
+        switch (jenisTiket) {
+            case 1:
+                tiket = new TiketReguler();
+                break;
+            case 2:
+                tiket = new TiketVIP();
+                break;
+            default:
+                System.out.println("Jenis tiket tidak valid.");
+                return;
+        }
+
+        Pesanan pesanan = new Pesanan(namaPemesan, tiket, jumlah);
+        daftarPesanan.add(pesanan);
+        System.out.println("Pesanan berhasil dibuat!");
+        pesanan.displayDetail();
+    }
+
+    private static void lihatDetailPesanan() {
+        if (isNoPesanan()) return;
+
+        System.out.print("Pilih nomor pesanan untuk melihat detail: ");
+        int nomorPesanan = scanner.nextInt();
+        if (nomorPesanan > 0 && nomorPesanan <= daftarPesanan.size()) {
+            daftarPesanan.get(nomorPesanan - 1).displayDetail();
+        } else {
+            System.out.println("Nomor pesanan tidak valid.");
+        }
+    }
+
+    private static boolean isNoPesanan() {
+        if (daftarPesanan.isEmpty()) {
+            System.out.println("\nBelum ada pesanan.");
+            return true;
+        }
+
+        System.out.println("\nDaftar Pesanan:");
+        for (int i = 0; i < daftarPesanan.size(); i++) {
+            System.out.println((i + 1) + ". " + daftarPesanan.get(i).getNamaPemesan());
+        }
+        return false;
+    }
+
+    private static void batalkanPesanan() {
+        if (isNoPesanan()) return;
+
+        System.out.print("Pilih nomor pesanan yang ingin dibatalkan: ");
+        int nomorPesanan = scanner.nextInt();
+        if (nomorPesanan > 0 && nomorPesanan <= daftarPesanan.size()) {
+            daftarPesanan.remove(nomorPesanan - 1);
+            System.out.println("Pesanan berhasil dibatalkan.");
+        } else {
+            System.out.println("Nomor pesanan tidak valid.");
+        }
     }
 }
 ```
@@ -1114,20 +1243,84 @@ public class KonferensiApp {
 2. Pesan Tiket
 3. Lihat Detail Pesanan
 4. Batalkan Pesanan
-5. Hitung Total Harga Semua Pesanan
-0. Keluar
-Pilihan: 1
+5. Keluar
+Pilih menu: 1
 
---- Daftar Tiket ---
-Jenis  : Reguler
-Harga  : Rp 150000.0
-Diskon : Rp 0.0
-Total  : Rp 150000.0
+Daftar Tiket:
+1. Tiket Reguler - Rp100.000
+2. Tiket VIP - Rp250.000 (Diskon 10%)
 
-Jenis  : VIP
-Harga  : Rp 500000.0
-Diskon : Rp 50000.0
-Total  : Rp 450000.0
+=== Aplikasi Pemesanan Tiket Konferensi ===
+1. Lihat Daftar Tiket
+2. Pesan Tiket
+3. Lihat Detail Pesanan
+4. Batalkan Pesanan
+5. Keluar
+Pilih menu: 2
+
+Masukkan nama pemesan: arfan
+Pilih jenis tiket (1: Reguler, 2: VIP): 2
+Masukkan jumlah tiket: 3
+Pesanan berhasil dibuat!
+
+Detail Pesanan:
+Nama Pemesan: arfan
+Jenis Tiket: VIP
+Jumlah: 3
+Total Harga: Rp675000.0
+
+=== Aplikasi Pemesanan Tiket Konferensi ===
+1. Lihat Daftar Tiket
+2. Pesan Tiket
+3. Lihat Detail Pesanan
+4. Batalkan Pesanan
+5. Keluar
+Pilih menu: 3
+
+Daftar Pesanan:
+1. arfan
+Pilih nomor pesanan untuk melihat detail: 1
+
+Detail Pesanan:
+Nama Pemesan: arfan
+Jenis Tiket: VIP
+Jumlah: 3
+Total Harga: Rp675000.0
+
+=== Aplikasi Pemesanan Tiket Konferensi ===
+1. Lihat Daftar Tiket
+2. Pesan Tiket
+3. Lihat Detail Pesanan
+4. Batalkan Pesanan
+5. Keluar
+Pilih menu: 4
+
+Daftar Pesanan:
+1. arfan
+Pilih nomor pesanan yang ingin dibatalkan: 1
+Pesanan berhasil dibatalkan.
+
+=== Aplikasi Pemesanan Tiket Konferensi ===
+1. Lihat Daftar Tiket
+2. Pesan Tiket
+3. Lihat Detail Pesanan
+4. Batalkan Pesanan
+5. Keluar
+Pilih menu: 3
+
+Belum ada pesanan.
+
+=== Aplikasi Pemesanan Tiket Konferensi ===
+1. Lihat Daftar Tiket
+2. Pesan Tiket
+3. Lihat Detail Pesanan
+4. Batalkan Pesanan
+5. Keluar
+Pilih menu: 5
+Terima kasih telah menggunakan aplikasi ini.
+
+Process finished with exit code 0
+
 ```
 
 ### Penjelasan Penerapan OOP pada Aplikasi
